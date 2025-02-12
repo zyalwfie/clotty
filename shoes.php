@@ -1,6 +1,8 @@
 <?php
-include "connect.php";
-$tampil = mysqli_query($con, "SELECT * FROM shoes");
+include_once 'functions.php';
+
+$shoes = queryRead("SELECT shoes.*, category_s.kind FROM shoes LEFT JOIN category_s ON shoes.ctgry_code_s = category_s.ctgry_code_s");
+
 ?>
 
 <!DOCTYPE html>
@@ -58,29 +60,25 @@ $tampil = mysqli_query($con, "SELECT * FROM shoes");
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    include "connect.php";
-                    $no = 1;
-                    $tampil = mysqli_query($con, "SELECT * FROM shoes INNER JOIN category_s ON category_s.ctgry_code_s=shoes.ctgry_code_s");
-                    while ($r = mysqli_fetch_array($tampil)) {
-                    ?>
+                    <?php $index = 1; ?>
+                    <?php foreach ($shoes as $row) : ?>
                         <tr class="align-middle">
-                            <th><?= $no++; ?></th>
-                            <td><?= $r['code_s'] ?></td>
-                            <td><?= $r['brand'] ?></td>
-                            <td><?= $r['kind'] ?></td>
-                            <td><?= $r['size'] ?></td>
-                            <td><?= $r['about'] ?></td>
-                            <td><img src="img/shoes/<?= $r['picture'] ?>" alt="foto" style="width: 75px;"></td>
-                            <td><?= $r['price'] ?></td>
+                            <th><?= $index++; ?></th>
+                            <td><?= $row['code_s'] ?></td>
+                            <td><?= $row['brand'] ?></td>
+                            <td><?= $row['kind'] ?></td>
+                            <td><?= $row['size'] ?></td>
+                            <td><?= $row['about'] ?></td>
+                            <td><img src="img/shoes/<?= $row['picture'] ?>" alt="foto" style="width: 75px;"></td>
+                            <td><?= $row['price'] ?></td>
                             <td class="text-end">
-                                <a href="edit_shoes.php?code_s=<?php echo $r['code_s'] ?>"><button type='button' class='btn btn-info text-white'><i class="bi bi-pen"></i></button></a>
+                                <a href="edit_shoes.php?code_s=<?php echo $row['code_s'] ?>"><button type='button' class='btn btn-info text-white'><i class="bi bi-pen"></i></button></a>
                             </td>
                             <td class="text-start">
-                                <a href="delete_shoes.php?code_s=<?php echo $r['code_s'] ?>"><button type='button' class='btn btn-danger'><i class="bi bi-trash3"></i></button></a>
+                                <a href="delete_shoes.php?code_s=<?php echo $row['code_s'] ?>"><button type='button' class='btn btn-danger'><i class="bi bi-trash3"></i></button></a>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
