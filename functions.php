@@ -1,17 +1,14 @@
 <?php
 include_once 'connect.php';
 
-function readQuery($query)
+function queryRead($query)
 {
     global $connect;
-
-    $rows = [];
-
     $results = mysqli_query($connect, $query);
-
+    $rows = [];
     while ($row = mysqli_fetch_assoc($results)) {
         $rows[] = $row;
-
-        return $rows;
     }
+
+    return $rows;
 }
