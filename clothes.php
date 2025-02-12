@@ -37,7 +37,7 @@ $tampil = mysqli_query($con, "SELECT * FROM clothes");
 <body>
     <div class="container-fluid home">
         <div class="container mt-3">
-            <a href="home.html" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i> Back</a>
+            <a href="/" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i> Back</a>
             <h1 class="display-1 text-center text-white">Clothes</h1>
             <h3><a href="input_clothes.php" class="btn btn-outline-success"><i class="bi bi-plus-lg"></i> Input</a></h3>
             <table class="table text-white text-center">
@@ -63,7 +63,7 @@ $tampil = mysqli_query($con, "SELECT * FROM clothes");
                     $no = 1;
                     $tampil = mysqli_query($con, "SELECT * FROM clothes INNER JOIN category_c ON category_c.ctgry_code_c=clothes.ctgry_code_c");
                     while ($r = mysqli_fetch_array($tampil)) {
-                        ?>
+                    ?>
                         <tr class="align-middle">
                             <th><?= $no++; ?></th>
                             <td><?= $r['code_c'] ?></td>
@@ -88,7 +88,7 @@ $tampil = mysqli_query($con, "SELECT * FROM clothes");
         </div>
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#example').DataTable();
             });
         </script>

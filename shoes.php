@@ -37,7 +37,7 @@ $tampil = mysqli_query($con, "SELECT * FROM shoes");
 <body>
     <div class="container-fluid home">
         <div class="container mt-3">
-            <a href="home.html" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i> Back</a>
+            <a href="/" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i> Back</a>
             <h1 class="display-1 text-center text-white">Shoes</h1>
             <h3><a href="input_shoes.php" class="btn btn-outline-success"><i class="bi bi-plus-lg"></i> Input</a></h3>
             <table class="table text-white text-center">
